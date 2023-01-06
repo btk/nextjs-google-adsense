@@ -1,1 +1,1 @@
-export { GoogleAnalytics, ResponsiveAdUnit } from "./components";
+export { GoogleAdSense, ResponsiveAdUnit } from "./components";

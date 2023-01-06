@@ -1,61 +1,28 @@
 import React from "react";
 import Script, { ScriptProps } from "next/script";
-import { usePageViews } from "../hooks";
 
-type GoogleAnalyticsProps = {
-  gaMeasurementId?: string;
-  gtagUrl?: string;
+type GoogleAdSenseProps = {
+  publisherId?: string;
   strategy?: ScriptProps["strategy"];
-  debugMode?: boolean;
 };
 
-type WithPageView = GoogleAnalyticsProps & {
-  trackPageViews?: boolean;
-};
-
-type WithIgnoreHashChange = GoogleAnalyticsProps & {
-  trackPageViews?: {
-    ignoreHashChange: boolean;
-  };
-};
-
-export function GoogleAnalytics({
-  debugMode = false,
-  gaMeasurementId,
-  gtagUrl = "https://www.googletagmanager.com/gtag/js",
+export function GoogleAdSense({
+  publisherId,
   strategy = "afterInteractive",
-  trackPageViews,
-}: WithPageView | WithIgnoreHashChange): JSX.Element | null {
-  const _gaMeasurementId =
-    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? gaMeasurementId;
+}: GoogleAdSenseProps): JSX.Element | null {
 
-  usePageViews({
-    gaMeasurementId: _gaMeasurementId,
-    ignoreHashChange:
-      typeof trackPageViews === "object"
-        ? trackPageViews?.ignoreHashChange
-        : false,
-    disabled: !trackPageViews,
-  });
-
-  if (!_gaMeasurementId) {
+  if(!publisherId){
+    // TODO: check the format of publisherId here, some peeps new to adsense might enter a wrong id here.
+    console.error("publisherId can't be empty");
     return null;
   }
 
   return (
     <>
-      <Script src={`${gtagUrl}?id=${_gaMeasurementId}`} strategy={strategy} />
-      <Script id="nextjs-google-analytics">
-        {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${_gaMeasurementId}', {
-              page_path: window.location.pathname,
-              ${debugMode ? `debug_mode: ${debugMode},` : ""}
-            });
-          `}
-      </Script>
+      <Script
+        id="nextjs-google-adsense"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`}
+        strategy={strategy} />
     </>
   );
 }

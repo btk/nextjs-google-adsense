@@ -1,2 +1,2 @@
-export { GoogleAnalytics } from "./GoogleAdSense";
+export { GoogleAdSense } from "./GoogleAdSense";
 export { ResponsiveAdUnit } from "./ResponsiveAdUnit";

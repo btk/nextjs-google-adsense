@@ -1,61 +1,41 @@
-import React from "react";
-import Script, { ScriptProps } from "next/script";
-import { usePageViews } from "../hooks";
+import React from 'react';
 
-type GoogleAnalyticsProps = {
-  gaMeasurementId?: string;
-  gtagUrl?: string;
-  strategy?: ScriptProps["strategy"];
-  debugMode?: boolean;
+declare const window: any;
+
+const initAd = () => {
+  (window.adsbygoogle = window.adsbygoogle || []).push({});
 };
 
-type WithPageView = GoogleAnalyticsProps & {
-  trackPageViews?: boolean;
-};
-
-type WithIgnoreHashChange = GoogleAnalyticsProps & {
-  trackPageViews?: {
-    ignoreHashChange: boolean;
-  };
-};
-
-export function GoogleAnalytics({
-  debugMode = false,
-  gaMeasurementId,
-  gtagUrl = "https://www.googletagmanager.com/gtag/js",
-  strategy = "afterInteractive",
-  trackPageViews,
-}: WithPageView | WithIgnoreHashChange): JSX.Element | null {
-  const _gaMeasurementId =
-    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? gaMeasurementId;
-
-  usePageViews({
-    gaMeasurementId: _gaMeasurementId,
-    ignoreHashChange:
-      typeof trackPageViews === "object"
-        ? trackPageViews?.ignoreHashChange
-        : false,
-    disabled: !trackPageViews,
-  });
-
-  if (!_gaMeasurementId) {
-    return null;
+export class ResponsiveAdUnit extends React.Component <any, any> {
+  componentDidMount() {
+    initAd();
   }
 
-  return (
-    <>
-      <Script src={`${gtagUrl}?id=${_gaMeasurementId}`} strategy={strategy} />
-      <Script id="nextjs-google-analytics">
-        {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${_gaMeasurementId}', {
-              page_path: window.location.pathname,
-              ${debugMode ? `debug_mode: ${debugMode},` : ""}
-            });
-          `}
-      </Script>
-    </>
-  );
+  shouldComponentUpdate(nextProps: any) {
+    const { props: { path } } = this;
+    return nextProps.path !== path;
+  }
+
+  componentDidUpdate() {
+    initAd();
+  }
+
+  render() {
+    const { style, path, slotId, publisherId } = this.props;
+
+    style.display = "block";
+
+    return (
+      <div key={path + "-" + slotId} style={style}>
+        <ins
+          className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client="ca-pub-3602356900147773"
+          data-ad-slot={String(slotId)}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      </div>
+    );
+  }
 }
