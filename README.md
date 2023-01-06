@@ -59,16 +59,19 @@ Create a new Display ad unit;
 > Google AdSense Panel > Ads (Sidebar) > By ad unit (Tab) > Display ads > Name your unit, Choose "Responsive" > Create
 
 ```js
-// pages/index.js
+// pages/index.js (or any component)
 import { ResponsiveAdUnit } from "nextjs-google-adsense";
 
 export default function Home() {
   return (
     <>
       <h1>My Home Page</h1>
+      <p>Welcome to my homepage. This is hero text</p>
+
       <ResponsiveAdUnit
-       publisherId="pub-XXXXXXXXXXXXXXXX"
-       slotId="XXXXXXXXXX"/>
+        publisherId="pub-XXXXXXXXXXXXXXXX"
+        slotId="XXXXXXXXXX"
+        type="after-home-hero"/>
     </>
   );
 };
@@ -77,6 +80,10 @@ export default Home;
 ```
 
 Copy your `data-ad-slot="XXXXXXXXXX"` value into the component as `slotId` prop. You can omit `publisherId` if you defined `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID` environment variable. The environment variable will override the prop if both are set.
+
+ The **ad unit automatically gets re-rendered when the route changes**. The `type` prop id used as `key` when there are multiple ad units in the page. You can add a slug defining the unit's position on the page. Also you can re-render the ad unit by changing this prop after page load.
+
+`ResponsiveAdUnit` also accepts `style` prop.
 
 // TODO: Add "fixed" unit type, passing it for now since it is not prefered a lot.
 
