@@ -1,0 +1,92 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Oculus\Support\oculus-runtime;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\Burak\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Oculus\Support\oculus-runtime;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\Burak\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Burak\AppData\Local\Microsoft\WindowsApps;C:\Users\Burak\AppData\Local\GitHubDesktop\bin;C:\Users\Burak\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Users\Burak\AppData\Local\Android\sdk\platform-tools;C:\Program Files (x86)\Java\jdk1.8.0_351\bin;C:\Users\Burak\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Burak\AppData\Local\atom-nightly\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.17.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Development\nextjs-google-adsense\package.json: Unexpected token ] in JSON at position 452
+      at JSON.parse (<anonymous>)
+      at C:\Users\Burak\AppData\Roaming\nvm\v16.17.0\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Burak\AppData\Roaming\nvm\v16.17.0\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\Burak\AppData\Roaming\nvm\v16.17.0\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "nextjs-google-adsense",
+    "version": "0.1.0",
+    "description": "Google AdSense for Next.js",
+    "main": "dist/index.js",
+    "sideEffects": false,
+    "scripts": {
+      "lint": "eslint src --fix",
+      "build": "del-cli dist && tsc",
+      "watch": "tsc-watch --onSuccess \"yalc push\"",
+      "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+      "google adsense",
+      "next.js",
+      "adsense",
+      "auto ads",
+      "adsense responsive unit",
+    ],
+    "author": "Burak Tokak",
+    "license": "MIT",
+    "devDependencies": {
+      "@testing-library/react": "^13.3.0",
+      "@types/gtag.js": "^0.0.12",
+      "@types/jest": "^27.4.1",
+      "@types/react": "^18.0.8",
+      "@types/react-test-renderer": "^18.0.0",
+      "@typescript-eslint/eslint-plugin": "^5.21.0",
+      "@typescript-eslint/parser": "^5.21.0",
+      "del-cli": "^5.0.0",
+      "eslint": "^8.14.0",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-plugin-react": "^7.29.4",
+      "jest": "^27.5.1",
+      "next": "^13.0.0",
+      "prettier": "^2.6.2",
+      "react": "^18.1.0",
+      "react-test-renderer": "^18.1.0",
+      "ts-jest": "^27.1.4",
+      "ts-lib": "^0.0.5",
+      "tsc-watch": "^6.0.0",
+      "typescript": "^4.6.4"
+    },
+    "peerDependencies": {
+      "next": ">=11.0.0",
+      "react": ">=17.0.0"
+    },
+    "files": [
+      "dist"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/btk/nextjs-google-adsense.git"
+    },
+    "bugs": {
+      "url": "https://github.com/btk/nextjs-google-adsense/issues"
+    },
+    "homepage": "https://github.com/btk/nextjs-google-adsense#readme",
+    "optionalDependencies": {
+      "fsevents": "^2.3.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
