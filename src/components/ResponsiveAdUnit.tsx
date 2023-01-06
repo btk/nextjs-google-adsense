@@ -1,4 +1,6 @@
 import React from 'react';
+import Script, { ScriptProps } from "next/script";
+import { useRouter } from 'next/router'
 
 declare const window: any;
 
@@ -21,16 +23,25 @@ export class ResponsiveAdUnit extends React.Component <any, any> {
   }
 
   render() {
-    const { style, path, slotId, publisherId } = this.props;
+    const { style, type, slotId, publisherId } = this.props;
+
+    const _publisherId =
+        process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID ?? publisherId;
+
+    if(!_publisherId || !slotId){
+      console.error("nextjs-google-adsense: publisherId or slotId can't be empty for the unit");
+      return null;
+    }
 
     style.display = "block";
+    const router = useRouter()
 
     return (
-      <div key={path + "-" + slotId} style={style}>
+      <div key={router.asPath.replace(/\//g, "-") + "-" + slotId + "-" + type} style={style}>
         <ins
           className="adsbygoogle"
           style={{ display: 'block' }}
-          data-ad-client="ca-pub-3602356900147773"
+          data-ad-client={`ca-${_publisherId}`}
           data-ad-slot={String(slotId)}
           data-ad-format="auto"
           data-full-width-responsive="true"
