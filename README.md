@@ -81,7 +81,7 @@ export default Home;
 
 Copy your `data-ad-slot="XXXXXXXXXX"` value into the component as `slotId` prop. You can omit `publisherId` if you defined `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID` environment variable. The environment variable will override the prop if both are set.
 
- The **ad unit automatically gets re-rendered when the route changes**. The `type` prop id used as `key` when there are multiple ad units in the page. You can add a slug defining the unit's position on the page. Also you can re-render the ad unit by changing this prop after page load.
+ The **ad unit automatically gets re-rendered when the route changes**. The `type` prop id used as `key` when there are multiple ad units in the page addition to the current `router.asPath` string. You can add a slug defining the unit's position on the page in order to differentiate a unit from others. Additionally you can re-render the ad unit by changing `type` prop after page load.
 
 `ResponsiveAdUnit` also accepts `style` prop.
 
