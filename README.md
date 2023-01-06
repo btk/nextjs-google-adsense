@@ -1,6 +1,6 @@
 # Nextjs Google AdSense
 
-Structure of this package is based on [nextjs-google-analytics](https://github.com/MauricioRobayo/nextjs-google-analytics).
+Structure of this package is based on [nextjs-google-analytics](https://github.com/MauricioRobayo/nextjs-google-analytics). Credits to [@MauricioRobayo](https://github.com/MauricioRobayo).
 
 **Google AdSense for Next.js**
 
@@ -10,6 +10,7 @@ This package optimizes script loading using [Next.js `Script` tag](https://nextj
 
 ```
 npm install --save nextjs-google-adsense
+# or
 yarn add nextjs-google-adsense
 ```
 
@@ -48,6 +49,8 @@ In order to activate Auto Ads, you need to login your Google AdSense panel and e
 
 > Google AdSense Panel > Ads (Sidebar) > By site (Tab) > Press Edit icon for your domain > Ad Settings > Expand Auto Ads and enable it > Enable Optimize exiting units
 
+Additionally, options like Anchor ads and Side rails can be managed under "Ad Formats" accordion menu and you don't need to make any changes in your Next.js project for it.
+
 Note that, Auto Ads might take a while to show up, and optimize itself depending on user behaviour.
 
 ### Manual Ad Unit Placement
@@ -72,6 +75,14 @@ export default function Home() {
         publisherId="pub-XXXXXXXXXXXXXXXX"
         slotId="XXXXXXXXXX"
         type="after-home-hero"/>
+
+      <p>This is my home page content</p>
+      <p>Way more content here</p>
+
+      <ResponsiveAdUnit
+        publisherId="pub-XXXXXXXXXXXXXXXX"
+        slotId="XXXXXXXXXX"
+        type="end-of-homepage"/>
     </>
   );
 };
