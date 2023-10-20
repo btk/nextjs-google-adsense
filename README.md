@@ -21,11 +21,16 @@ Add the `GoogleAdSense` component with the `publisherId` prop set to your Publis
 ```js
 // pages/_app.js
 import { GoogleAdSense } from "nextjs-google-adsense";
+{/* or */}
+import { GoogleAdSense } from "nextjs-google-adsense/dict"; {/* if you are using TypeScript */}
 
 const App = ({ Component, pageProps }) => {
   return (
     <>
-      <GoogleAdSense publisherId="pub-XXXXXXXXXXXXXXXX" />
+      <GoogleAdSense publisherId="pub-XXXXXXXXXXXXXXXX" /> {/* 👈 16 digits */}
+      {/* or */}
+      <GoogleAdSense /> {/* if NEXT_PUBLIC_ADSENSE_PUBLISHER_ID is set */}
+
       <Component {...pageProps} />
     </>
   );
@@ -72,8 +77,8 @@ export default function Home() {
       <p>Welcome to my homepage. This is hero text</p>
 
       <ResponsiveAdUnit
-        publisherId="pub-XXXXXXXXXXXXXXXX"
-        slotId="XXXXXXXXXX"
+        publisherId="pub-XXXXXXXXXXXXXXXX" {/* 👈 16 digits, optional if NEXT_PUBLIC_ADSENSE_PUBLISHER_ID is set */}
+        slotId="XXXXXXXXXX"                {/* 👈 10 digits */}
         type="after-home-hero"/>
 
       <p>This is my home page content</p>
